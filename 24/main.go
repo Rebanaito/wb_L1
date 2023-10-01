@@ -6,6 +6,8 @@ import (
 	"math"
 )
 
+// Function that calculates the distance between two points.
+// Point coordinates are obtained by public methods
 func distance(A, B *point.Point) float64 {
 	return math.Sqrt(math.Pow(float64(B.GetX()-A.GetX()), 2) + math.Pow(float64(B.GetY()-A.GetY()), 2))
 }

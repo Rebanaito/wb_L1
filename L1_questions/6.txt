@@ -1,0 +1,13 @@
+No, Go does not support method/function or operator overloading.
+Main reason for this seems to come from the center idea of Go - simplicity and efficiency.
+About method overloading from the Go Language FAQ:
+
+"Method dispatch is simplified if it doesn't need to do type matching. Experience
+with other languages told us that having a variety of methods with the same name
+but different signatures was occasionaly useful but that it could also be confusing
+and fragile in practice. Matching only by name and requiring consistency in the types
+was a major simplifying decision in Go's type system."
+(Note: the main useful feature of overloading can be simulated by a variadic function,
+which is now present in Go)
+
+

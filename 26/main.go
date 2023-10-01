@@ -2,7 +2,10 @@ package main
 
 import "fmt"
 
-func allLettersAreUnique(str string) bool {
+// This function uses an array of bool values big enough
+// to accomodate all ASCII values. All uppercase letters
+// are marked as lowercase to make the function case-insensitive.
+func allSymbolsAreUnique(str string) bool {
 	chars := make([]bool, 128)
 	for _, letter := range str {
 		index := int(letter)
@@ -19,7 +22,7 @@ func allLettersAreUnique(str string) bool {
 }
 
 func main() {
-	fmt.Println("abcd - ", allLettersAreUnique("abcd"))
-	fmt.Println("abCdefAaf - ", allLettersAreUnique("abCdefAaf"))
-	fmt.Println("aabcd - ", allLettersAreUnique("aabcd"))
+	fmt.Println("abcd - ", allSymbolsAreUnique("abcd"))
+	fmt.Println("abCdefAaf - ", allSymbolsAreUnique("abCdefAaf"))
+	fmt.Println("aabcd - ", allSymbolsAreUnique("aabcd"))
 }

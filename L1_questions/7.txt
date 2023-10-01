@@ -1,0 +1,1 @@
+If we are printing out the map contents, we will see everything ordered in ascending order by the key values.  

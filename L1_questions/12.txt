@@ -1,0 +1,3 @@
+This program outputs 0 instead of 2 that could be expected.
+The reason for this is the fact that we are re-declaring the 'n' variable within the scope of the if clause,
+leaving the initial variable unaffected.

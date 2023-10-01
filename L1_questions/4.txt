@@ -1,0 +1,3 @@
+Unbuffered channels have 0 capacity, meaning they cannot store any messages within them.
+That means, that nothing can be thrown into the channel until the previous messages is read from it. If we are working with two routines, where one sends the data to the channel and the other receives it, the sender will have to pause until the receiver has processed the message and is ready to receive again.
+With buffered channels, we can specify how many messages we can store in the channel before we have to reach this pause. Sender will keep throwing messages into the channel until the buffer is filled, and only pause then.

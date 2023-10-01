@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+// We turn the string into a string array using the Split function.
+// The rest is the same as mirroring a word in the last task
 func reverseStrings(str string) string {
 	words := strings.Split(str, " ")
 	for i := 0; i < len(words)/2; i++ {

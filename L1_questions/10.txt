@@ -1,0 +1,2 @@
+This program will output '1' to the screen twice. The reason for this is that we're not dereferencing the pointer in the update() function,
+meaning we only change the value of p (*int) within the scope of this function, not changing it in main().

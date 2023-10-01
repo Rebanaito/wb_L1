@@ -1,0 +1,6 @@
+This program will output the slice of length 5, where the first element is 100 and others are left with inital values.
+The problem here is that the slice is being passed to the someAction() function by value, not referenced.
+The underlying int8 array is referenced by a pointer withing the slice, so we are able to change the value of the [0] element.
+However, since someAction() gets only a copy of the slice, any changes to the slice itself such as appending values to it
+only happen locally, withing the scope of the function. To amend that, we would have to pass the address of the slice, dereferencing the pointer
+each time we want to append something to it.

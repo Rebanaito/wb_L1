@@ -1,0 +1,5 @@
+new() allocates memory for a data type and sets the value to 0 (0 for int, "" for string),
+but not for the underlying data types it might have.
+So, in case with slices, maps, and channels it will only return a reference pointer, without
+initializing any underlying data structures. make(), on the other hand, does that, and thus
+it is only used with slices, maps, and channels.

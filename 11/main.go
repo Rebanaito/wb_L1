@@ -2,41 +2,35 @@ package main
 
 import "fmt"
 
-func intersection(one, two []int) []int {
+// This function finds numbers that are present in both arrays.
+// It achieves this by mapping the values of the shorter array
+// and then iterating over the longer one to find any matches
+func findIntersecting(shorter, longer []int) []int {
 	var intersect []int = nil
 	nums := make(map[int]struct{})
-	if len(one) < len(two) {
-		for _, num := range one {
-			nums[num] = struct{}{}
-		}
-		for _, num := range two {
-			_, ok := nums[num]
-			if ok {
-				if intersect == nil {
-					intersect = make([]int, 1)
-					intersect[0] = num
-				} else {
-					intersect = append(intersect, num)
-				}
-			}
-		}
-	} else {
-		for _, num := range two {
-			nums[num] = struct{}{}
-		}
-		for _, num := range one {
-			_, ok := nums[num]
-			if ok {
-				if intersect == nil {
-					intersect = make([]int, 1)
-					intersect[0] = num
-				} else {
-					intersect = append(intersect, num)
-				}
+	for _, num := range shorter {
+		nums[num] = struct{}{}
+	}
+	for _, num := range longer {
+		_, ok := nums[num]
+		if ok {
+			if intersect == nil {
+				intersect = make([]int, 1)
+				intersect[0] = num
+			} else {
+				intersect = append(intersect, num)
 			}
 		}
 	}
 	return intersect
+}
+
+// This function simply checks which array is shorter
+func intersection(one, two []int) []int {
+	if len(one) < len(two) {
+		return findIntersecting(one, two)
+	}
+	return findIntersecting(two, one)
 }
 
 func main() {

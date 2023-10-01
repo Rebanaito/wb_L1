@@ -1,0 +1,5 @@
+This program will output numbers 0 through 4, unordered since go routines are racing against each other.
+However, the program is not able to exit gracefully and crashes on wg.Wait() due to deadlock.
+This problem is caused by bypassing the noCopy lock when passing a wait group to the go func instead of passing a reference pointer to it.
+As a result, we simply copy a wait group for each go routine, meaning that wg.Done() only affect the local copies, while the wait group
+in main() is still waiting for 5 routines to finish.

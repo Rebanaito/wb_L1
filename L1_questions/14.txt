@@ -1,0 +1,10 @@
+The program will output the slice twice (or rather, two different slices), first looking like this:
+b b a
+And the other second one looking like this:
+a a
+
+This is, again, due to not passing a reference to the slice to the function and simply copying the slice.
+Any changes made to the copy are only accessible within the scope of the function, while the original
+slice stays unchanged. This time the values [0] and [1] of the underlying array stayed unchanged because
+withing the function we first used append(), which in our case would result in memory reallocation,
+creating new array for the local slice.

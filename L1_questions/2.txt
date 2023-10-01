@@ -1,0 +1,2 @@
+An interface type is defined as a set of method signatures. It can hold any value of any type for which all of its methods are implemented.
+Thanks to that, we can a lot of times avoid writing duplicate code for each type that could get passed to a specific part of the program - it's enough to just implement the same methods for all these types. We then are able to, through an interface, interact with any type that shares this interface. This is what is called polymorphism.

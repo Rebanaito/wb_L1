@@ -1,0 +1,35 @@
+For maps, there are two ways to creating them.
+First is declare and make:
+
+var m map[string]int
+m = make(map[string]int)
+
+or simply:
+
+m := make(map[string]int)
+
+Second way is declare and initialize:
+
+m := map[string]int {
+	"Somebody": 1,
+	"once": 2,
+}
+
+For slices, there are three ways:
+
+slice := new([]int)
+
+Where 'slice' becomes a pointer to a slice of type int, with a default value of nil.
+To write something to this slice, we'll have to dereference the pointer and use the append() function on the underlying value.
+Another method is this:
+
+var slice []int
+
+Basically the same as the previous one, except that we get the slice itself instead of a pointer, so no derefencing needed.
+To write something, we also use append()
+
+Third method:
+
+slice := make([]int, N)
+
+where N is the size of the underlying array to be allocated. We'll able to write to the slice elements 0 through N-1, and only then we'd have use append().
