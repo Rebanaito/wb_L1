@@ -6,7 +6,7 @@ import "fmt"
 // 'Value' is 1 or 0, 'i' is a number between 0 and 64
 // The target bit is accessed through a mask variable and
 // bitwise operators
-func changebit(num *int64, i uint, value bool) {
+func changeBit(num *int64, i uint, value bool) {
 	// Create a mask - a variable where all bits are 0
 	// except for bit 'i' (chosen by the user).
 	mask := int64(1) << (i - 1)
@@ -34,7 +34,7 @@ func main() {
 	}
 	fmt.Print("What value should the 'i' bit be set to?: ")
 	fmt.Scan(&value)
-	fmt.Printf("Old value: %64b\n", num)
-	changebit(&num, i, value)
-	fmt.Printf("New value: %64b", num)
+	fmt.Printf("Old value: %64b (%d)\n", num, num)
+	changeBit(&num, i, value)
+	fmt.Printf("New value: %64b (%d)", num, num)
 }

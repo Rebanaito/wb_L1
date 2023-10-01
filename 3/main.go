@@ -7,7 +7,7 @@ import (
 
 // Function that calculates the squared value of a number.
 // The result is sent to the summing function through a channel.
-func calcSquare(n int, ch chan int, wg *sync.WaitGroup) {
+func calcSquare(n int, ch chan<- int, wg *sync.WaitGroup) {
 	n *= n
 	ch <- n
 }
@@ -16,7 +16,8 @@ func calcSquare(n int, ch chan int, wg *sync.WaitGroup) {
 // Each value is incremented to the total sum.
 // Mutex is used to avoid problems with concurrent routines
 // writing to a variable at the same time.
-func changeSum(ch chan int, sum *int, mu *sync.Mutex, wg *sync.WaitGroup) {
+func changeSum(ch <-chan int, sum *int, wg *sync.WaitGroup) {
+	mu := sync.Mutex{}
 	for square := range ch {
 		mu.Lock()
 		*sum += square
@@ -31,15 +32,13 @@ func main() {
 	// Channel for communication between routines
 	ch := make(chan int)
 
-	// Mutex to make sure all writes to sum are safe.
 	// Wait group to make sure all values are added first
 	// before printing the sum
-	mu := sync.Mutex{}
 	sum := 0
 	wg := &sync.WaitGroup{}
 
 	// Launching the sum function as a routine
-	go changeSum(ch, &sum, &mu, wg)
+	go changeSum(ch, &sum, wg)
 
 	// Each number of the array is calculated concurrently
 	for _, num := range array {

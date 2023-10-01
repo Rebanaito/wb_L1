@@ -7,15 +7,13 @@ import (
 
 // Function that calculates the squared value of a number.
 // The result is sent to the output function through a channel.
-func calcSquare(n int, ch chan int, wg *sync.WaitGroup) {
+func calcSquare(n int, ch chan<- int, wg *sync.WaitGroup) {
 	n *= n
 	ch <- n
 }
 
 // Function that handles the output to stdout
-func output(ch chan int, wg *sync.WaitGroup) {
-	defer wg.Done()
-
+func output(ch <-chan int, wg *sync.WaitGroup) {
 	// Little flag for formatting reasons
 	first := true
 
@@ -27,6 +25,7 @@ func output(ch chan int, wg *sync.WaitGroup) {
 		} else {
 			fmt.Print(" ", square)
 		}
+		wg.Done()
 	}
 }
 

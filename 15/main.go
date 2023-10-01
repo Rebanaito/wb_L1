@@ -10,7 +10,6 @@ import "fmt"
 // Here we assume that the number passed to this function
 // specifies the lenght of the created string...
 func createHugeString(len int) string {
-	fmt.Println("Len is ", len)
 	str := make([]rune, len)
 	return string(str)
 }

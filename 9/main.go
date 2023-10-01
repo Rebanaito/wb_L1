@@ -16,7 +16,7 @@ func output(outChan chan int, wg *sync.WaitGroup) {
 
 // Input function reads from the first channel and
 // writes the doubled value to the second channel
-func input(inChan, outChan chan int) {
+func input(inChan <-chan int, outChan chan<- int) {
 	for num := range inChan {
 		outChan <- num * 2
 	}

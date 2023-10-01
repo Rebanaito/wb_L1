@@ -7,7 +7,7 @@ import (
 )
 
 // Listener function that reads from the channel
-func listener(ch chan string, wg *sync.WaitGroup) {
+func listener(ch <-chan string, wg *sync.WaitGroup) {
 	for message := range ch {
 		fmt.Println(message)
 		wg.Done()
@@ -36,7 +36,11 @@ func main() {
 	for i := 1; i <= N; i++ {
 		wg.Add(1)
 		time.Sleep(time.Second)
-		ch <- fmt.Sprintf("Message #%d", i)
+		if i == 1 {
+			ch <- fmt.Sprintf("%d second", i)
+		} else {
+			ch <- fmt.Sprintf("%d seconds", i)
+		}
 	}
 
 	// Waiting for the listener to print the last message

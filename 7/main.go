@@ -20,8 +20,8 @@ func main() {
 	dict := make(map[string]int)
 	wg := &sync.WaitGroup{}
 	mu := sync.Mutex{}
-	wg.Add(len(words))
 	for i, word := range words {
+		wg.Add(1)
 		go writeToMap(dict, word, i, wg, &mu)
 	}
 	wg.Wait()

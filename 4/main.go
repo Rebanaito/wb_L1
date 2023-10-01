@@ -16,7 +16,7 @@ import (
 // When a number is received on the main channel, worker prints it to stdout.
 // When the context is canceled, the worker notifies about
 // it and finishes gracefully
-func worker(ctx context.Context, id, N int, data chan int, wg *sync.WaitGroup) {
+func worker(ctx context.Context, id, N int, data <-chan int, wg *sync.WaitGroup) {
 	for {
 		select {
 		case num := <-data:
@@ -30,7 +30,7 @@ func worker(ctx context.Context, id, N int, data chan int, wg *sync.WaitGroup) {
 }
 
 // Function that keeps sending data to the main channel indefinitely
-func mainChannel(data chan int) {
+func mainChannel(data chan<- int) {
 	for i := 1; ; i++ {
 		data <- i
 		time.Sleep(time.Second)

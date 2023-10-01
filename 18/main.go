@@ -29,10 +29,11 @@ func main() {
 	var counter Counter
 	mu := sync.Mutex{}
 	wg := &sync.WaitGroup{}
+	fmt.Println(`Calling in 1000 routines to increment the counter by 1`)
 	for i := 0; i < 1000; i++ {
 		wg.Add(1)
 		go routine(&counter, i%5+1, &mu, wg)
 	}
 	wg.Wait()
-	fmt.Println(counter)
+	fmt.Println(`Count is `, counter.Count)
 }

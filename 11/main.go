@@ -15,11 +15,9 @@ func findIntersecting(shorter, longer []int) []int {
 		_, ok := nums[num]
 		if ok {
 			if intersect == nil {
-				intersect = make([]int, 1)
-				intersect[0] = num
-			} else {
-				intersect = append(intersect, num)
+				intersect = *new([]int)
 			}
+			intersect = append(intersect, num)
 		}
 	}
 	return intersect

@@ -26,7 +26,7 @@ func quicksortPartition(array []int, low, high int) int {
 
 func main() {
 	array := []int{10, -2, 4, 1, 26, -20, 17, 36}
-	fmt.Println("Before sort: ", array)
+	fmt.Println("Before sort:\t", array)
 	quicksort(array, 0, len(array)-1)
-	fmt.Println("After sort: ", array)
+	fmt.Println("After sort:\t", array)
 }
